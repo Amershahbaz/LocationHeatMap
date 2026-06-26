@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocationHeatMap.Views.MainView">
+
+    <Grid RowDefinitions="*, 40, 60">
+
+        <WebView x:Name="MapWebView"
+                 Grid.Row="0"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill" />
+
+        <GraphicsView x:Name="HeatMapCanvas"
+                      Grid.Row="0"
+                      BackgroundColor="Transparent"
+                      InputTransparent="True"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Fill" />
+
+        <Label Grid.Row="1"
+               Text="{Binding StatusMessage}"
+               BackgroundColor="#6200EE"
+               TextColor="White"
+               FontSize="13"
+               HorizontalOptions="Fill"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+
+        <Grid Grid.Row="2"
+              BackgroundColor="#6200EE"
+              ColumnDefinitions="95, *, 110, 80"
+              Padding="6,0">
+
+            <Button Grid.Column="0"
+                    Text="{Binding TrackingButtonLabel}"
+                    Command="{Binding ToggleTrackingCommand}"
+                    BackgroundColor="White"
+                    TextColor="#6200EE"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    VerticalOptions="Center" />
+
+            <Label Grid.Column="1"
+                   TextColor="White"
+                   FontSize="11"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="📍 " />
+                        <Span Text="{Binding PointCount}"
+                              FontAttributes="Bold" />
+                        <Span Text=" pts" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Button Grid.Column="2"
+                    Text="➕ Add Point"
+                    Command="{Binding AddManualPointCommand}"
+                    BackgroundColor="#03DAC6"
+                    TextColor="Black"
+                    FontSize="11"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    VerticalOptions="Center" />
+
+            <Button Grid.Column="3"
+                    Text="🗑 Clear"
+                    Command="{Binding ClearDataCommand}"
+                    BackgroundColor="#CF6679"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    VerticalOptions="Center" />
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
